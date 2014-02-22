@@ -22,6 +22,30 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `evaluate`
+--
+
+CREATE TABLE IF NOT EXISTS `evaluate` (
+  `id_project` mediumint(8) NOT NULL DEFAULT '0',
+  `id_user` mediumint(8) NOT NULL DEFAULT '0',
+  `c1` tinyint(4) NOT NULL DEFAULT '0',
+  `c2` tinyint(4) NOT NULL DEFAULT '0',
+  `c3` tinyint(4) NOT NULL DEFAULT '0',
+  `c4` tinyint(4) NOT NULL DEFAULT '0',
+  `c5` tinyint(4) NOT NULL DEFAULT '0',
+  `c6` tinyint(4) NOT NULL DEFAULT '0',
+  `c7` tinyint(4) NOT NULL DEFAULT '0',
+  `c8` tinyint(4) NOT NULL DEFAULT '0',
+  `c9` tinyint(4) NOT NULL DEFAULT '0',
+  `c10` tinyint(4) NOT NULL DEFAULT '0',
+  `total` tinyint(4) NOT NULL DEFAULT '0',
+  `time` int(10) NOT NULL DEFAULT '0',
+  UNIQUE KEY `id_project_id_user` (`id_project`, `id_user`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `category`
 --
 
