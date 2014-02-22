@@ -97,6 +97,21 @@ function template_user_edit()
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="category">Category:</label>
+					<div class="controls">
+						<select id="category" name="category[]" size="5" multiple="multiple">';
+
+	foreach ($template['categories'] as $category)
+	{
+		echo '
+							<option value="', $category['id'], '"', (in_array($category['id'], $template['user']['category']) ? ' selected="selected"' : ''), '>', $category['name'], '</option>';
+	}
+
+	echo '
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="admin">Admin:</label>
 					<div class="controls">
 						<select id="admin" name="admin">

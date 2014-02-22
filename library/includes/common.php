@@ -65,7 +65,7 @@ function load_user()
 	if (!empty($user['id']))
 	{
 		$request = db_query("
-			SELECT id_user, username, password, admin
+			SELECT id_user, username, password, category, admin
 			FROM user
 			WHERE id_user = $user[id]
 			LIMIT 1");
@@ -76,6 +76,7 @@ function load_user()
 			$temp = array(
 				'id' => (int) $row['id_user'],
 				'username' => $row['username'],
+				'category' => !empty($row['category']) ? explode(',', $row['category']) : array(),
 				'admin' => !empty($row['admin']),
 				'logged' => true,
 				'session_id' => $core['session_id'],
@@ -92,6 +93,7 @@ function load_user()
 		$user = array(
 			'id' => 0,
 			'username' => '',
+			'category' => array(),
 			'admin' => false,
 			'logged' => false,
 			'session_id' => $core['session_id'],

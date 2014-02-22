@@ -70,6 +70,7 @@ function user_edit()
 			'email_address' => 'email',
 			'password' => 'password',
 			'verify_password' => 'password',
+			'category' => 'array_int',
 			'admin' => 'int',
 		);
 
@@ -83,6 +84,16 @@ function user_edit()
 				$values[$field] = !empty($_POST[$field]) && preg_match('~^[0-9A-Za-z=_+\-/][0-9A-Za-z=_\'+\-/\.]*@[\w\-]+(\.[\w\-]+)*(\.[\w]{2,6})$~', $_POST[$field]) ? $_POST[$field] : '';
 			elseif ($type === 'int')
 				$values[$field] = !empty($_POST[$field]) ? (int) $_POST[$field] : 0;
+			elseif ($type === 'array_int')
+			{
+				$values[$field] = array();
+				if (!empty($_POST[$field]) && is_array($_POST[$field]))
+				{
+					foreach ($_POST[$field] as $value)
+						$values[$field][] = (int) $value;
+				}
+				$values[$field] = implode(',', $values[$field]);
+			}
 		}
 
 		if ($values['username'] === '')
@@ -160,6 +171,7 @@ function user_edit()
 			'id' => 0,
 			'username' => '',
 			'email_address' => '',
+			'category' => array(),
 			'admin' => 0,
 		);
 	}
@@ -167,7 +179,7 @@ function user_edit()
 	{
 		$request = db_query("
 			SELECT
-				id_user, username, email_address, admin,
+				id_user, username, email_address, category, admin,
 				login_count, last_login, last_password_change
 			FROM user
 			WHERE id_user = $id_user
@@ -179,6 +191,7 @@ function user_edit()
 				'id' => $row['id_user'],
 				'username' => $row['username'],
 				'email_address' => $row['email_address'],
+				'category' => !empty($row['category']) ? explode(',', $row['category']) : array(),
 				'admin' => $row['admin'],
 				'login_count' => $row['login_count'],
 				'last_login' => empty($row['last_login']) ? 'Never' : format_time($row['last_login'], 'long'),
@@ -190,6 +203,20 @@ function user_edit()
 		if (!isset($template['user']))
 			fatal_error('The user requested does not exist!');
 	}
+
+	$request = db_query("
+		SELECT id_category, name
+		FROM category
+		ORDER BY name");
+	$template['categories'] = array();
+	while ($row = db_fetch_assoc($request))
+	{
+		$template['categories'][] = array(
+			'id' => $row['id_category'],
+			'name' => $row['name'],
+		);
+	}
+	db_free_result($request);
 
 	$template['page_title'] = (!$is_new ? 'Edit' : 'Add') . ' User';
 	$core['current_template'] = 'user_edit';
