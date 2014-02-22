@@ -31,7 +31,7 @@ function category_list()
 	global $core, $template;
 
 	$request = db_query("
-		SELECT id_category, name,
+		SELECT id_category, name
 		FROM category
 		ORDER BY name");
 	$template['categories'] = array();
