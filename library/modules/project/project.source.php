@@ -197,6 +197,6 @@ function project_delete()
 	if (!empty($_POST['delete']) || !empty($_POST['cancel']))
 		redirect(build_url('project'));
 
-	$template['page_title'] = 'Delete project';
+	$template['page_title'] = 'Delete Project';
 	$core['current_template'] = 'project_delete';
 }
