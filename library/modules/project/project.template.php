@@ -49,6 +49,7 @@ function template_project_list()
 					<td>', $project['name'], '</td>
 					<td>', $project['category'], '</td>
 					<td class="span3 align_center">
+						<a class="btn btn-info" href="', build_url(array('peek', 'project', $project['id'])), '">Peek</a>
 						<a class="btn btn-primary" href="', build_url(array('project', 'edit', $project['id'])), '">Edit</a>
 						<a class="btn btn-danger" href="', build_url(array('project', 'delete', $project['id'])), '">Delete</a>
 					</td>

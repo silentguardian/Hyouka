@@ -47,6 +47,7 @@ function template_category_list()
 				<tr>
 					<td>', $category['name'], '</td>
 					<td class="span3 align_center">
+						<a class="btn btn-info" href="', build_url(array('peek', 'category', $category['id'])), '">Peek</a>
 						<a class="btn btn-primary" href="', build_url(array('category', 'edit', $category['id'])), '">Edit</a>
 						<a class="btn btn-danger" href="', build_url(array('category', 'delete', $category['id'])), '">Delete</a>
 					</td>

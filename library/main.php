@@ -34,7 +34,7 @@ if ($user['logged'])
 else
 	$modules = array_merge($modules, array('login', 'register'));
 if ($user['admin'])
-	$modules = array_merge($modules, array('category', 'project', 'user'));
+	$modules = array_merge($modules, array('category', 'project', 'user', 'peek'));
 
 $core['current_module'] = $user['logged'] ? 'evaluate' : 'login';
 if (!empty($_REQUEST['module']) && in_array($_REQUEST['module'], $modules))

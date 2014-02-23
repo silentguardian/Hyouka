@@ -274,6 +274,7 @@ function template_menu()
 	$items = array(
 		'',
 		'evaluate' => 'Evaluate',
+		'profile' => 'Profile',
 		'login' => 'Login',
 		'register' => 'Register',
 		'about' => 'About',
@@ -282,6 +283,7 @@ function template_menu()
 		'category' => 'Category',
 		'project' => 'Project',
 		'user' => 'User',
+		'peek' => 'Peek',
 	);
 
 	echo '
